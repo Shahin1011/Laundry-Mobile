@@ -1,0 +1,40 @@
+Hi Backend Team,
+
+We're implementing Stripe payment integration and encountering an issue with the order creation endpoint.
+
+PROBLEM:
+The API is rejecting order creation when paymentMethod="stripe" because it requires card details. However, in the Stripe Payment Intent flow, card details are collected securely by Stripe's payment sheet on the client side, not sent to our backend.
+
+ERROR:
+POST /api/orders with paymentMethod="stripe" returns:
+{
+  "success": false,
+  "status": 400,
+  "message": "Card details are required for Stripe payment"
+}
+
+REQUIRED FIX:
+Please update the order creation endpoint to:
+1. Allow creating orders with paymentMethod="stripe" WITHOUT card details
+2. Set paymentStatus="pending" for Stripe orders
+3. Remove the validation that requires card details for Stripe payment method
+
+CORRECT FLOW:
+1. Create order with paymentMethod="stripe" (no card details) → paymentStatus="pending"
+2. Frontend calls /api/payment/create-payment-intent with orderId
+3. Frontend uses Stripe SDK to collect card details (client-side, secure)
+4. Stripe processes payment
+5. Backend webhook updates order to paymentStatus="paid"
+
+WHY THIS MATTERS:
+- Security: Card details never touch our servers (PCI compliance)
+- Best Practice: This is Stripe's recommended Payment Intent flow
+- User Experience: Native Stripe payment sheet for card entry
+
+CURRENT WORKAROUND:
+We're temporarily creating orders with paymentMethod="cash" then processing Stripe payment, but this is not ideal.
+
+Please see BACKEND_API_FIX_REQUEST.md for detailed documentation.
+
+Thanks!
+
