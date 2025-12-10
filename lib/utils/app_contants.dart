@@ -1,6 +1,6 @@
 
 class  AppConstants{
 
-  static const String BASE_URL = "https://universities-emma-cancellation-fewer.trycloudflare.com";
+  static const String BASE_URL = "https://syndicate-wagner-hung-translate.trycloudflare.com";
 
 }

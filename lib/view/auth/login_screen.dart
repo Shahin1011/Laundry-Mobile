@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.059),
 
                     Text(
-                      "Enter your E-mail or Number",
+                      "Enter your E-mail",
                       style: GoogleFonts.inter(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,

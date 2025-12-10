@@ -14,7 +14,6 @@ import 'controller/profile/profile_controller.dart';
 import 'helpers/route.dart';
 
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

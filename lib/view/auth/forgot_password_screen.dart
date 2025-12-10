@@ -125,7 +125,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                   SizedBox(height: 12.h),
                   Text(
-                    "Don’t worry! Enter your registered email\nor phone number.",
+                    "Don’t worry! Enter your registered email",
                     style: GoogleFonts.inter(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
