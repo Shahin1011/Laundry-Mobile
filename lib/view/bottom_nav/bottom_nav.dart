@@ -64,7 +64,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
             ),
           ),
         ),
-        height: 95.h,
+        height: 100.h,
         child: BottomNavigationBar(
           elevation: 0,
           type: BottomNavigationBarType.fixed,

@@ -409,7 +409,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         },
                         child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(vertical: 10.h),
+                          padding: EdgeInsets.symmetric(vertical: 14.h),
                           decoration: BoxDecoration(
                             color: Colors.red, // You can make it red to indicate cancel
                             borderRadius: BorderRadius.circular(8.r),
@@ -428,7 +428,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         ),
                       ),
 
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.040),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.080),
 
                   ],
                 ),

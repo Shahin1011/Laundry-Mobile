@@ -202,7 +202,7 @@ class ChoicePackageScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border(top: BorderSide(color: Color(0xFFE5E5E5))),
+                      //border: Border(top: BorderSide(color: Color(0xFFE5E5E5))),
                     ),
                     child: GestureDetector(
                       onTap: () {
@@ -245,6 +245,7 @@ class ChoicePackageScreen extends StatelessWidget {
                       }),
                     ),
                   ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.080)
                 ],
               );
             }),

@@ -3,6 +3,7 @@ import '../view/auth/forgot_password_screen.dart';
 import '../view/auth/login_screen.dart';
 import '../view/auth/new_password_screen.dart';
 import '../view/auth/otp_screen.dart';
+import '../view/auth/otp_verify_forgotscreen.dart';
 import '../view/auth/sign_up_screen.dart';
 import '../view/home/choice_package_screen.dart';
 import '../view/bottom_nav/bottom_nav.dart';
@@ -36,6 +37,7 @@ class AppRoutes {
   static const String loginScreen = "/login_screen";
   static const String forgotPasswordScreen = "/forgot_password_screen";
   static const String oTPScreen = "/otp_screen";
+  static const String otpVerifyForForgotPass = "/otp_verify_forgotscreen";
   static const String newPasswordScreen = "/new_password_screen";
   static const String signUPScreen = "/sign_up_screen";
   static const String homeScreen = "/home_screen";
@@ -64,6 +66,7 @@ class AppRoutes {
     GetPage(name: loginScreen, page: () => LoginScreen()),
     GetPage(name: forgotPasswordScreen, page: () => ForgotPasswordScreen()),
     GetPage(name: oTPScreen, page: () => OTPScreen()),
+    GetPage(name: otpVerifyForForgotPass, page: () => OtpVerifyForForgotPass()),
     GetPage(name: newPasswordScreen, page: () => NewPasswordScreen()),
     GetPage(name: signUPScreen, page: () => SignUPScreen()),
     GetPage(name: homeScreen, page: () => HomeScreen()),

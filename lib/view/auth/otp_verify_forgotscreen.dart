@@ -13,14 +13,14 @@ import 'package:http/http.dart' as http;
 import '../../utils/app_contants.dart';
 
 
-class OTPScreen extends StatefulWidget{
-  const OTPScreen({super.key});
+class OtpVerifyForForgotPass extends StatefulWidget{
+  const OtpVerifyForForgotPass({super.key});
 
   @override
-  State<OTPScreen> createState() => _OTPScreenState();
+  State<OtpVerifyForForgotPass> createState() => _OtpVerifyForForgotPassState();
 }
 
-class _OTPScreenState extends State<OTPScreen> {
+class _OtpVerifyForForgotPassState extends State<OtpVerifyForForgotPass> {
 
   late String email;
 
@@ -41,14 +41,14 @@ class _OTPScreenState extends State<OTPScreen> {
   }
 
   Future<bool> verifyUser(String email, String code) async {
-    final url = "${AppConstants.BASE_URL}/api/auth/verify-otp";
+    final url = "${AppConstants.BASE_URL}/api/auth/verify-reset-otp";
 
     if (!await hasInternetConnection()) {
       Get.snackbar("No Internet", "Please check your internet connection.");
       return false;
     }
 
-    final body = {'emailOrPhone': email, 'otp': code};
+    final body = {'email': email, 'otp': code};
     setState(() {
       isLoading = true;
     });
@@ -62,13 +62,21 @@ class _OTPScreenState extends State<OTPScreen> {
       final data = json.decode(response.body);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
+        final resetToken = data["data"]?["resetToken"];
+
+        if (resetToken == null) {
+          Get.snackbar("Error", "Reset token not found");
+          return false;
+        }
+
         Get.snackbar(
           "Success",
           data["message"] ?? "OTP Verified successfully!",
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
-        Get.off(() => LoginScreen());
+        Get.toNamed(AppRoutes.newPasswordScreen, arguments: {"resetToken": resetToken});
+
         return true;
       } else {
         String message = "Code wrong";
@@ -114,7 +122,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       child: SvgPicture.asset("assets/icons/backIcon.svg", width: 24.w, height: 24.h),
                     ),
                     Text(
-                      "OTP Verify",
+                      "OTP Verify For Forgot Screen",
                       style: GoogleFonts.inter(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600,
@@ -145,9 +153,9 @@ class _OTPScreenState extends State<OTPScreen> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.059),
-            
+
                 PinCodeEnter(context),
-            
+
                 GestureDetector(
                   onTap: (){
                     final otp = pinController.text.trim();
@@ -172,7 +180,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.030),
-            
+
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -186,7 +194,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       ),
                       InkWell(
                         onTap: (){
-            
+
                         },
                         child: Text(
                           "Resend",
@@ -200,7 +208,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     ]
                 ),
                 SizedBox(height: 8.h),
-            
+
                 Center(
                   child: InkWell(
                     onTap: (){
@@ -218,7 +226,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 ),
 
                 SizedBox(height: MediaQuery.of(context).size.height * 0.030),
-            
+
               ],
             ),
           ),

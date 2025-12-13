@@ -55,7 +55,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       final data = json.decode(response.body);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        Get.offNamed(AppRoutes.oTPScreen, arguments: { "email": email, "nextScreen": "resetPassword"});
+        Get.toNamed(AppRoutes.otpVerifyForForgotPass, arguments: { "email": email});
         return true;
       } else {
         String message = "Code wrong";
