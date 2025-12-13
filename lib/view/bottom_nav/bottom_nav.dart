@@ -45,48 +45,49 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     return Scaffold(
       body: _pages[selectedIndex],
 
-      // 🎯 MODIFICATION: Wrap the BottomNavigationBar in a SizedBox
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF000000).withOpacity(0.08),
-              offset: const Offset(4, 0),
-              blurRadius: 4,
-              spreadRadius: 0,
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF000000).withOpacity(0.08),
+                offset: const Offset(4, 0),
+                blurRadius: 4,
+                spreadRadius: 0,
+              ),
+            ],
+            border: const Border(
+              top: BorderSide(
+                color: Color(0xFFEAEAEA),
+                width: 1.5,
+              ),
             ),
-          ],
-          border: const Border(
-            top: BorderSide(
-              color: Color(0xFFEAEAEA),
-              width: 1.5,
+          ),
+          child: BottomNavigationBar(
+            elevation: 0,
+            type: BottomNavigationBarType.fixed,
+            currentIndex: selectedIndex,
+            selectedItemColor: AppColors.mainAppColor,
+            selectedLabelStyle: TextStyle(
+              fontFamily: 'SegeoUi_bold',
+              fontWeight: FontWeight.w700,
+              fontSize: 12.sp,
+              color: AppColors.mainAppColor,
             ),
+            unselectedLabelStyle: TextStyle(
+              fontFamily: 'SegeoUi_bold',
+              fontWeight: FontWeight.w600,
+              fontSize: 12.sp,
+              color: AppColors.foundationColor,
+            ),
+            showSelectedLabels: true,
+            unselectedItemColor: AppColors.foundationColor,
+            backgroundColor: Colors.white,
+            onTap: navigationItemTap,
+            items: _navItems,
           ),
-        ),
-        height: 100.h,
-        child: BottomNavigationBar(
-          elevation: 0,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: selectedIndex,
-          selectedItemColor: AppColors.mainAppColor,
-          selectedLabelStyle: TextStyle(
-            fontFamily: 'SegeoUi_bold',
-            fontWeight: FontWeight.w700,
-            fontSize: 12.sp,
-            color: AppColors.mainAppColor,
-          ),
-          unselectedLabelStyle: TextStyle(
-            fontFamily: 'SegeoUi_bold',
-            fontWeight: FontWeight.w600,
-            fontSize: 12.sp,
-            color: AppColors.foundationColor,
-          ),
-          showSelectedLabels: true,
-          unselectedItemColor: AppColors.foundationColor,
-          backgroundColor: Colors.white,
-          onTap: navigationItemTap,
-          items: _navItems,
         ),
       ),
     );
