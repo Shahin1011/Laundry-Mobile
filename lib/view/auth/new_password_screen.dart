@@ -64,7 +64,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
     setState(() { isLoading = true; });
 
     try {
-      final response = await http.put(
+      final response = await http.post(
         Uri.parse(updatePassUrl),
         headers: {
           'Content-Type': 'application/json',

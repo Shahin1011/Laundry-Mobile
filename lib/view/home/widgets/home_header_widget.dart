@@ -37,17 +37,23 @@ class HomeHeaderWidget extends StatelessWidget {
                   border: Border.all(color: Colors.white, width: 2),
                 ),
                 child: ClipOval(
-                  child: profile != null && profile.profileImage.isNotEmpty
+                  child: (profile != null && profile.profileImage.isNotEmpty)
                       ? CachedNetworkImage(
                     imageUrl: profile.profileImage,
                     fit: BoxFit.cover,
-                    placeholder: (context, url) => Container(
-                      color: Colors.grey[300],
+                    placeholder: (context, url) => Image.asset(
+                      "assets/images/emptyUser.png",
+                      fit: BoxFit.cover,
                     ),
-                    errorWidget: (context, url, error) =>
-                        Icon(Icons.person, color: AppColors.mainAppColor),
+                    errorWidget: (context, url, error) => Image.asset(
+                      "assets/images/emptyUser.png",
+                      fit: BoxFit.cover,
+                    ),
                   )
-                      : Icon(Icons.person, color: AppColors.mainAppColor),
+                      : Image.asset(
+                    "assets/images/emptyUser.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               SizedBox(width: 12.w),
@@ -56,7 +62,7 @@ class HomeHeaderWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hi, ${profile?.fullname ?? 'User'}',
+                    'Hi, ${profile?.fullname ?? ''}',
                     style: GoogleFonts.inter(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
