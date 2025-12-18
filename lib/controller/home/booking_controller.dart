@@ -35,12 +35,13 @@ class BookingController extends GetxController {
   RxString bookingError = ''.obs;
 
   // Bag data structure
-  void addBagSelection(String bagId, String name, String weight, int price, int quantity) {
+  void addBagSelection(String bagId, String name, String weight, double price, double serviceFee, int quantity) {
     selectedBags[bagId] = BagSelection(
       bagId: bagId,
       name: name,
       weight: weight,
       price: price,
+      serviceFee: serviceFee,
       quantity: quantity,
     );
   }
@@ -64,7 +65,7 @@ class BookingController extends GetxController {
   double getTotalPrice() {
     double total = 0;
     selectedBags.forEach((id, bag) {
-      total += (bag.price * bag.quantity);
+      total += (bag.price * bag.quantity) + bag.serviceFee;
     });
     return total;
   }
@@ -196,7 +197,8 @@ class BagSelection {
   String bagId;
   String name;
   String weight;
-  int price;
+  double price;
+  double serviceFee;
   int quantity;
 
   BagSelection({
@@ -204,8 +206,9 @@ class BagSelection {
     required this.name,
     required this.weight,
     required this.price,
+    required this.serviceFee,
     required this.quantity,
   });
 
-  int get totalPrice => price * quantity;
+  double get totalPrice => (price * quantity) + serviceFee;
 }

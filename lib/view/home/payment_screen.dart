@@ -19,6 +19,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   String? selectedMethod;
   final BookingController bookingController = Get.find<BookingController>();
 
+
   @override
   void initState() {
     super.initState();
@@ -187,6 +188,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget _buildSummaryCard() {
     final selectedBags = bookingController.selectedBags;
 
+    double totalServiceFee = 0;
+    bookingController.selectedBags.forEach((key, bag) {
+      totalServiceFee += bag.serviceFee;
+    });
+
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
@@ -248,11 +254,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
           // Service fee (you can make this dynamic too if needed)
           SizedBox(height: 20.h),
-          _summaryRow('Service fee', '\$2.00'),
+          _summaryRow('Service fee', '\$${totalServiceFee.toStringAsFixed(2)}'),
           SizedBox(height: 20.h),
           const Divider(height: 1, color: Color(0xFFE5E5E5)),
           SizedBox(height: 20.h),
-          _summaryRow('Total Payable', '\$${bookingController.getTotalPrice() + 2.00}', isBold: true),
+          _summaryRow('Total Payable', '\$${bookingController.getTotalPrice().toStringAsFixed(2)}', isBold: true),
         ],
       ),
     );

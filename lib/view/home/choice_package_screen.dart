@@ -136,7 +136,7 @@ class ChoicePackageScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'Total: \$${bookingController.getTotalPrice()}',
+                                'Total: \$${bookingController.getTotalPrice().toStringAsFixed(2)}',
                                 style: GoogleFonts.inter(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
@@ -245,7 +245,7 @@ class ChoicePackageScreen extends StatelessWidget {
                       }),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.080)
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.060)
                 ],
               );
             }),
@@ -271,6 +271,7 @@ class ChoicePackageScreen extends StatelessWidget {
               bag.name,
               bag.weight,
               bag.price,
+              bag.serviceFee,
               1,
             );
           }
@@ -371,8 +372,7 @@ class ChoicePackageScreen extends StatelessWidget {
                               width: 36.w,
                               height: 36.h,
                               alignment: Alignment.center,
-                              child: Icon(Icons.add,
-                                  size: 18.sp, color: Color(0xFF1F1D1D)),
+                              child: Icon(Icons.add, size: 18.sp, color: Color(0xFF1F1D1D)),
                             ),
                           ),
                         ],
@@ -381,33 +381,46 @@ class ChoicePackageScreen extends StatelessWidget {
 
                   SizedBox(width: isSelected ? 16.w : 0),
 
-                  // Price
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        '\$${bag.price}',
-                        style: GoogleFonts.inter(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF1F1D1D),
-                        ),
-                      ),
-                      if (isSelected && quantity > 1)
-                        Text(
-                          '\$${bag.price * quantity}',
-                          style: GoogleFonts.inter(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.mainAppColor,
-                          ),
-                        ),
-                    ],
+                  Text(
+                    '\$${bag.price.toStringAsFixed(2)}',
+                    style: GoogleFonts.inter(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF1F1D1D),
+                    ),
                   ),
+
                 ],
               ),
+              SizedBox(height: 10.h),
 
-              SizedBox(height: 12.h),
+              // Service Fee & Total on the right
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Service fee: \$${bag.serviceFee.toStringAsFixed(2)}',
+                      style: GoogleFonts.inter(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF757575),
+                      ),
+                    ),
+                    if (isSelected)
+                      Text(
+                        'Total: \$${(bag.price * quantity + bag.serviceFee).toStringAsFixed(2)}',
+                        style: GoogleFonts.inter(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.mainAppColor,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10.h),
 
               Text(
                 bag.description,
@@ -416,7 +429,11 @@ class ChoicePackageScreen extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   color: Color(0xFF757575),
                 ),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
               ),
+
+
             ],
           ),
         ),

@@ -103,11 +103,11 @@ class BagCategory {
 
 class Small {
   String? id;
-  int? price;
+  double? price;
   String? description;
   int? kg;
   String? deliveryTime;
-  int? serviceFee;
+  double? serviceFee;
 
   Small({
     this.id,
@@ -121,22 +121,22 @@ class Small {
   factory Small.fromJson(Map<String, dynamic> json) {
     return Small(
       id: json['_id'],
-      price: json['price'],
+      price: (json['price'] ?? 0).toDouble(),
       description: json['description'],
       kg: json['kg'],
       deliveryTime: json['deliveryTime'],
-      serviceFee: json['serviceFee'],
+      serviceFee: (json['serviceFee'] ?? 0).toDouble(),
     );
   }
 }
 
 class Medium {
   String? id;
-  int? price;
+  double? price;
   String? description;
   int? kg;
   String? deliveryTime;
-  int? serviceFee;
+  double? serviceFee;
 
   Medium({
     this.id,
@@ -150,22 +150,22 @@ class Medium {
   factory Medium.fromJson(Map<String, dynamic> json) {
     return Medium(
       id: json['_id'],
-      price: json['price'],
+      price: (json['price'] ?? 0).toDouble(),
       description: json['description'],
       kg: json['kg'],
       deliveryTime: json['deliveryTime'],
-      serviceFee: json['serviceFee'],
+      serviceFee: (json['serviceFee'] ?? 0).toDouble(),
     );
   }
 }
 
 class Large {
   String? id;
-  int? price;
+  double? price;
   String? description;
   int? kg;
   String? deliveryTime;
-  int? serviceFee;
+  double? serviceFee;
 
   Large({
     this.id,
@@ -179,11 +179,11 @@ class Large {
   factory Large.fromJson(Map<String, dynamic> json) {
     return Large(
       id: json['_id'],
-      price: json['price'],
+      price: (json['price'] ?? 0).toDouble(),
       description: json['description'],
       kg: json['kg'],
       deliveryTime: json['deliveryTime'],
-      serviceFee: json['serviceFee'],
+      serviceFee: (json['serviceFee'] ?? 0).toDouble(),
     );
   }
 }

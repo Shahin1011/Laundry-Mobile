@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:laundry/helpers/route.dart';
 import 'package:laundry/view/auth/login_screen.dart';
+import 'package:laundry/view/auth/widget/otp_timer_widget.dart';
 import '../../utils/app_colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
@@ -172,33 +173,37 @@ class _OTPScreenState extends State<OTPScreen> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.030),
+
+
+                ///Resend OTP Timer
+                OtpTimerWidget(),
             
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Didn't receive the code? ",
-                        style: GoogleFonts.inter(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xFF2B2B2B),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: (){
-            
-                        },
-                        child: Text(
-                          "Resend",
-                          style: GoogleFonts.inter(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF2B2B2B),
-                          ),
-                        ),
-                      ),
-                    ]
-                ),
+                // Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       Text(
+                //         "Didn't receive the code? ",
+                //         style: GoogleFonts.inter(
+                //           fontSize: 14.sp,
+                //           fontWeight: FontWeight.w400,
+                //           color: Color(0xFF2B2B2B),
+                //         ),
+                //       ),
+                //       InkWell(
+                //         onTap: (){
+                //
+                //         },
+                //         child: Text(
+                //           "Resend",
+                //           style: GoogleFonts.inter(
+                //             fontSize: 15.sp,
+                //             fontWeight: FontWeight.w600,
+                //             color: Color(0xFF2B2B2B),
+                //           ),
+                //         ),
+                //       ),
+                //     ]
+                // ),
                 SizedBox(height: 8.h),
             
                 Center(

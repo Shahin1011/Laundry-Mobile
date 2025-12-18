@@ -38,6 +38,7 @@ class ChoicePackageController extends GetxController {
         bagId,
         bag.name,
         bag.weight,
+        bag.serviceFee,
         bag.price,
         1,
       );
@@ -98,6 +99,7 @@ class ChoicePackageController extends GetxController {
   }
 
 
+  // Fetch Packages get api
   Future<void> fetchPackages() async {
     if (!await hasInternetConnection()) {
       Get.snackbar("No Internet", "Please check your connection.");
@@ -136,8 +138,8 @@ class BagOption {
   String id;
   String name;
   String weight;
-  int price;
-  int serviceFee;
+  double price;
+  double serviceFee;
   String description;
 
   BagOption({
@@ -145,7 +147,7 @@ class BagOption {
     required this.name,
     required this.weight,
     required this.price,
-    required this.serviceFee,
+    double? serviceFee,
     required this.description,
-  });
+  }) : serviceFee = serviceFee ?? 0;
 }
